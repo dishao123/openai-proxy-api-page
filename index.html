@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>企业微信自定义机器人在线调试</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 引入 Bootstrap 的 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="card">
+                    <div class="card-header bg-white">
+                        <h4 class="mb-0">企业微信自定义机器人在线调试工具</h4>
+                    </div>
+                    <div id="alert-container" class="card-body">
+                        <form id="message-form">
+                            <div class="form-group mb-3">
+                                <label for="title">消息标题：</label>
+                                <input type="text" id="title" name="title" class="form-control"
+                                    placeholder="请输入消息标题" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="description">消息描述：</label>
+                                <textarea id="description" name="description" rows="3" class="form-control"
+                                    placeholder="请输入消息描述" required></textarea>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="content">消息内容：</label>
+                                <textarea id="content" name="content" rows="5" class="form-control"
+                                    placeholder="请输入消息内容" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">发送</button>
+                        </form>
+                        <div class="notice-container">
+                            <div class="notice">温馨提示：如果你看见上方有红色的弹窗，而且弹窗里有乱码就说明你的key，没有填写或者填写错误。<br>KEY修改地址：index.php文件的第50行。<br>企业微信机器人官方文档：https://developer.work.weixin.qq.com/document/path/91770<br>下方是KEY查看的方法,图片打码的地方就是key</div>
+                        </div>
+                        <div class="steps-container">
+                            <ol class="steps-list" data-tag="steps" id="steps-5pc-gck-oj3">
+                                <li class="step-item" data-tag="step" id="step-3tw-xpw-9q4">
+                                    <div class="step-item-content">
+                                        <span class="step-text">打开并登录企业微信。</span>
+                                    </div>
+                                </li>
+                                <li class="step-item" data-tag="step" id="step-d4q-scb-d3i">
+                                    <div class="step-item-content">
+                                        <span class="step-text">
+                                            单击企业微信群右上角的
+                                            <img class="step-image" data-tag="image" id="image-f0m-xha-y2w" height="23" src="https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/5221500461/p371939.png" alt="更多图标"></img>
+                                            图标，然后单击
+                                            <span class="uicontrol">添加群机器人</span>
+                                            。
+                                        </span>
+                                    </div>
+                                </li>
+                                <li class="step-item" data-tag="step" id="step-8w9-q4b-xsc">
+                                    <div class="step-item-content">
+                                        <span class="step-text">
+                                            在
+                                            <span class="uicontrol">添加机器人</span>
+                                            页面单击
+                                            <span class="uicontrol">新创建一个机器人</span>
+                                            。
+                                        </span>
+                                    </div>
+                                </li>
+                                <li class="step-item" data-tag="step" id="step-hj6-aug-vgo">
+                                    <div class="step-item-content">
+                                        <span class="step-text">
+                                            在
+                                            <span class="wintitle">创建机器人</span>
+                                            页面自定义机器人名称，然后单击
+                                            <span class="uicontrol">添加机器人</span>
+                                            。
+                                        </span>
+                                    </div>
+                                </li>
+                                <li class="step-item" data-tag="step" id="step-wa0-v5x-8mb">
+                                    <div class="step-item-content">
+                                        <span class="step-text">
+                                            单击
+                                            <span class="uicontrol">复制地址</span>
+                                            ，保存企业微信机器人的Webhook地址。
+                                        </span>
+                                        <div class="image-wrapper">
+                                            <img class="info-image" data-tag="image" id="image-7mp-hx3-a3s" src="https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/6221500461/p371942.png" alt="获取Webhook地址">
+                                        </div>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入 Bootstrap 的 JS 文件 -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    <script>
+        $(function() {
+            var form = document.getElementById('message-form');
+            var alertContainer = document.getElementById('alert-container');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // 构造卡片消息内容
+                var message = {
+                    "msgtype": "markdown",
+                    "markdown": {
+                        "content": "> **标题:**\n"
+                            + "# " + document.getElementById('title').value + "\n"
+                            + "> **描述:**\n"
+                            + "> " + document.getElementById('description').value + "\n"
+                            + "> \n"
+                            + "> **通知内容:**\n"
+                            + "> " + document.getElementById('content').value
+                    }
+                };
+
+                // 发送 POST 请求并获取响应
+                $.ajax({
+                    url: "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=你的key",
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    data: JSON.stringify(message),
+                    success: function(response) {
+                        if (response.errcode == 0) {
+                            var successAlert = document.getElementById('success');
+                            if (!successAlert) {
+                                alertContainer.innerHTML += '<div id="success" class="alert alert-success" role="alert"><i class="fa fa-check-circle"></i>消息发送成功！</div>';
+                                setTimeout(function() {
+                                    var successAlert = document.getElementById('success');
+                                    if (successAlert) {
+                                        successAlert.style.opacity = '0';
+                                        successAlert.style.transform = 'translateY(-50px)';
+                                        setTimeout(function() {
+                                            successAlert.parentNode.removeChild(successAlert);
+                                        }, 300);
+                                    }
+                                }, 3000);
+                            }
+                        } else {
+                            var errorAlert = document.getElementById('error');
+                            if (!errorAlert) {
+                                alertContainer.innerHTML += '<div id="error" class="alert alert-danger" role="alert"><i class="fa fa-times-circle"></i>消息发送失败，请稍后再试。</div>'
+                            }
+                        }
+                    },
+                    error: function() {
+                        var errorAlert = document.getElementById('error');
+                        if (!errorAlert) {
+                            alertContainer.innerHTML += '<div id="error" class="alert alert-danger" role="alert"><i class="fa fa-times-circle"></i>消息发送失败，请稍后再试。</div>'
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

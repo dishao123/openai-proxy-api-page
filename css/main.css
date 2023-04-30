@@ -1,0 +1,144 @@
+        /* 自定义样式 */
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .card {
+            margin-top: 50px;
+            border: none;
+            box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+        }
+
+        .card-header {
+            background-color: #fff;
+            border-bottom: none;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: #999;
+            font-size: 14px;
+        }
+
+        .form-control {
+            background-color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+            padding: 12px 15px;
+            transition: all .3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            box-shadow: 0 3px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-control::placeholder {
+            color: #999;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            border-radius: 10px;
+            transition: all .3s ease;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 5px 15px rgba(0, 123, 255, .4);
+        }
+
+        .alert-container {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .alert {
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+            font-size: 16px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            z-index: 999;
+        }
+
+        .alert i {
+            font-size: 24px;
+            margin-right: 12px;
+        }
+
+        .alert-success {
+            color: #25c93c;
+            background-color: #dff8e6;
+            border-color: #c3e6cb;
+        }
+
+        .alert-danger {
+            color: #ff6565;
+            background-color: #ffe7ea;
+            border-color: #ffc9cc;
+        }
+
+.notice-container {
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+.notice {
+  display: inline-block;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+        marquee {
+            font-size: 14px;
+            line-height: 28px;
+            color: #666;
+            animation-name: marquee;
+            animation-duration: 20s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .deadline-container {
+            margin-top: 20px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .deadline {
+            color: #fff;
+            background-color: #007bff;
+            border-radius: 10px;
+            font-size: 16px;
+            padding: 12px 15px;
+            box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+            text-align: center;
+        }
+.image-wrapper {
+			text-align: center;
+		}
+ 
+		.image-wrapper img {
+			max-width: 100%;
+			height: auto;
+		}
